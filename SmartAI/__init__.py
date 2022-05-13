@@ -7,6 +7,7 @@ from flask import Flask, render_template, request
 
 
 app = Flask(__name__)
+app.debug = True
 
 broker_address = '192.168.10.84'
 broker_port = 1883
@@ -14,11 +15,11 @@ led_topic = 'inTopic'
 led_topic2 = 'inTopic2'
 led_topic3 = 'inTopic3'
 
-def on_connect(mqttc, userdata, rc):
- mqttc.subscribe("outTopic")
+#def on_connect(mqttc, userdata, rc):
+# mqttc.subscribe("outTopic")
 
-def on_message(mqttc, userdata, msg):
- print(msg.topic+" "+str(msg.payload))
+#def on_message(mqttc, userdata, msg):
+# print(msg.topic+" "+str(msg.payload))
  
 mqttc=mqtt.Client()
 mqttc.connect(broker_address,broker_port,60)
@@ -65,5 +66,4 @@ def action_led_off3():
    
    return render_template('sample.html')
 
-if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=8080, debug=True) 
+
