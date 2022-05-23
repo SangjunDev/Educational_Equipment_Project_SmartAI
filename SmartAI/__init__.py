@@ -1,9 +1,6 @@
 import paho.mqtt.client as mqtt
-import os
-import time
-from threading import Thread
-from flask import Flask, render_template, request
-
+from flask import Flask, render_template
+import pymysql
 
 
 app = Flask(__name__)
@@ -15,16 +12,27 @@ led_topic = 'inTopic'
 led_topic2 = 'inTopic2'
 led_topic3 = 'inTopic3'
 
-#def on_connect(mqttc, userdata, rc):
-# mqttc.subscribe("outTopic")
-
-#def on_message(mqttc, userdata, msg):
-# print(msg.topic+" "+str(msg.payload))
- 
 mqttc=mqtt.Client()
 mqttc.connect(broker_address,broker_port,60)
 
 mqttc.loop_start()
+
+def db_connector():
+    db = pymysql.connect(host='localhost', port=3306, user='root', passwd='1234qwer', db='SmartAI', charset='utf8')
+    cursor = db.cursor()
+    sql = '''SELECT * FROM SmartAI.students;'''
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    db.close()
+    return str(result)
+  
+@app.route('/test')
+def index():
+    a = db_connector()
+    return a
+
+
+
 
 @app.route("/")
 def main():
