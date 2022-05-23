@@ -1,6 +1,7 @@
 import paho.mqtt.client as mqtt
-from flask import Flask, render_template
 import pymysql
+from flask import Flask, render_template
+import numpy as np
 
 
 app = Flask(__name__)
