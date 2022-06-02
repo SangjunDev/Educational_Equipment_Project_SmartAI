@@ -11,35 +11,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
        
-        <script>
-            function onLED(){
-            
-                location.href = "/led_on";
-            }
-            function offLED(){
-                
-                    location.href = "/led_off";
-                }
-
-            function onLED2(){
-            
-                    location.href = "/led_on2";
-                }
-            function offLED2(){
-                    
-                        location.href = "/led_off2";
-                    }
-
-            function onLED3(){
-            
-                        location.href = "/led_on3";
-                    }
-            function offLED3(){
-                        
-                            location.href = "/led_off3";
-                        }                   
-
-        </script>
+ 
                  
         <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     </head>
@@ -55,30 +27,80 @@
     <ul class="sensorList">
         <li>
             LED1 <br><br>
-            <button type="button" class="btn btn-primary" onclick="onLED()"> LED On </button>
-            <button type="button" class="btn btn-primary" onclick="offLED()" > LED Off </button>
+            <button type="button" class="btn btn-primary" onclick="led_on()"> LED On </button>
+            <button type="button" class="btn btn-primary" onclick="led_off()" > LED Off </button>
         </li>
     </ul>
 
     <ul class="sensorList">
         <li>
             LED2 <br><br>
-            <button type="button" class="btn btn-primary" onclick="onLED2()"> LED On </button>
-            <button type="button" class="btn btn-primary" onclick="offLED2()" > LED Off </button>
+            <button type="button" class="btn btn-primary" onclick="led2_on()"> LED On </button>
+            <button type="button" class="btn btn-primary" onclick="led2_off()" > LED Off </button>
         </li>
     </ul>
 
     <ul class="sensorList">
         <li>
             LED3 <br><br>
-            <button type="button" class="btn btn-primary" onclick="onLED3()"> LED On </button>
-            <button type="button" class="btn btn-primary" onclick="offLED3()" > LED Off </button>
+            <button type="button" class="btn btn-primary" onclick="led3_on()"> LED On </button>
+            <button type="button" class="btn btn-primary" onclick="led3_off()" > LED Off </button>
         </li>
     </ul>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
 
     </script>
+
+    <script>
+        function led_on() {
+            fetch("/led/on")
+                .then(response => response.text())
+                .then(data => {
+                  console.log(data);  
+            });
+        }
+
+        function led_off() {
+            fetch("/led/off")
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                });
+        }
+        function led2_on() {
+            fetch("/led2/on")
+                .then(response => response.text())
+                .then(data => {
+                  console.log(data);  
+            });
+        }
+
+        function led2_off() {
+            fetch("/led2/off")
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                });
+        }
+        function led3_on() {
+            fetch("/led3/on")
+                .then(response => response.text())
+                .then(data => {
+                  console.log(data);  
+            });
+        }
+
+        function led3_off() {
+            fetch("/led3/off")
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                });
+        }
+
+    </script>
+
 
     </body>
 </html>

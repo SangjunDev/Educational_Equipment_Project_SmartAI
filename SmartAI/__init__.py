@@ -1,16 +1,11 @@
-from flask import Flask, render_template 
-from . import actuator_control 
-from . import read_db
-from . import index
+from flask import Flask
+from.import actuator_control
+from.import read_db
+from.import index
 
 app = Flask(__name__)
 
 app.register_blueprint(actuator_control.blue_control)
 app.register_blueprint(read_db.blue_read)
 app.register_blueprint(index.blue_index)
- 
-
- 
-
-
 
