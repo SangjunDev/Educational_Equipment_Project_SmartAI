@@ -4,4 +4,4 @@ blue_index = Blueprint("index", __name__)
 
 @blue_index.route("/")
 def main():
- return render_template('sample.html')
+ return render_template('index.html')
