@@ -1,1 +1,3 @@
-.vscode/launch.json
+.vscode
+.venv
+SmartAI/__pycache__
