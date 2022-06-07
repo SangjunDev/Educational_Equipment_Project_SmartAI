@@ -6,9 +6,10 @@ from paho.mqtt import client as mqtt
 import mysql.connector as mariadb
 
 
-broker = '192.168.10.84'
+broker = '192.168.10.85'
 port = 1883
-topic = ["outTopic", "outTopic2"]
+#topic = ["outTopic", "outTopic2"]
+topic = "house/temper"
 
 mariadb_connection = mariadb.connect(
     host='localhost',
@@ -42,9 +43,9 @@ def subscribe(client: mqtt):
         cursor.execute(sql,val)
         mariadb_connection.commit()
     
-    for topics in topic:
-     client.subscribe(topics)
-    #client.subscribe(topic2)
+    #for topics in topic:
+     #client.subscribe(topics)
+    client.subscribe(topic) 
     client.on_message = on_message
     
 
@@ -55,11 +56,7 @@ def db_truncate():
 
 def run():
     client = connect_mqtt()
-    subscribe(client)
-    time.sleep(2)    
-    #t=threading.Thread(target = subscribe, args = client)
-    #t.daemon = True
-    #t.start()
+    subscribe(client)  
     client.loop_forever()
     
 

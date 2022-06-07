@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template 
+from flask import Blueprint, jsonify
 import pymysql 
-import numpy as np
+import datetime
 
 blue_read = Blueprint("read_db", __name__)
 
@@ -18,3 +18,15 @@ def db_connector():
 def index():
     a = db_connector()
     return a
+
+@blue_read.route('/Temp/Sensing')
+def Temp_Sensing():
+    a = db_connector()
+    return a
+
+@blue_read.route('/update', methods=['POST'])
+def update():
+    now = datetime.datetime.now()
+    return jsonify({
+        'time': now.strftime('%Y-%d-%m %H:%M:%S'),
+    })

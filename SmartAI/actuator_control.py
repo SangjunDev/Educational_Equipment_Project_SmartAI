@@ -1,5 +1,5 @@
 from ast import Expression
-from flask import Blueprint, render_template ,request
+from flask import Blueprint,request
 import paho.mqtt.client as mqtt
 
 blue_control = Blueprint("control", __name__)
@@ -8,7 +8,7 @@ broker_address = '192.168.10.85'
 broker_port = 1883
 led_topic = 'inTopic'
 led_topic2 = 'inTopic2'
-led_topic3 = 'inTopic3'
+led_topic3 = 'LED/Control'
 
 
 mqtt=mqtt.Client()
@@ -29,7 +29,7 @@ def led1_off():
    try:   
       mqtt.publish(led_topic,"0")
       return "OK"
-   except :
+   except:
         return "FAIL"
 
 
@@ -47,22 +47,22 @@ def led2_off():
    try:   
       mqtt.publish(led_topic2,"0")
       return "OK"
-   except :
+   except:
         return "FAIL"
 
 @blue_control.route("/led3/on")
 def led3_on():
    try:   
-    mqtt.publish(led_topic3,"0")
+    mqtt.publish(led_topic3,"1")
     return "OK"
-   except :
+   except:
         return "FAIL"
 
 
 @blue_control.route("/led3/off")
 def led3_off():
    try:   
-      mqtt.publish(led_topic3,"0")
+      mqtt.publish(led_topic3,'0')
       return "OK"
-   except :
+   except:
         return "FAIL"
