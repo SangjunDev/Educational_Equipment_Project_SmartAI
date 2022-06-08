@@ -15,5 +15,5 @@ def live_resource():
     cpu = psutil.cpu_percent()
     date = [time()*1000, cpu]
     response = make_response(json.dumps(date))
-    response.content_type = 'application/josn'
+    response.content_type = 'application/json'
     return response

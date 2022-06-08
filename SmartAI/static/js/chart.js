@@ -19,14 +19,14 @@ function requestData() {
 $(document).ready(function() {
     chart = new Highcharts.Chart({
         chart: {
-            renderTo: 'container',
+            renderTo: 'container_1',
             defaultSeriesType: 'spline',
             events: {
                 load: requestData
             }
         },
         title: {
-            text: 'Realtime CPU Resource'
+            text: 'Realtime Illuminance Sensor'
         },
         xAxis: {
             type: 'datetime',
@@ -42,7 +42,7 @@ $(document).ready(function() {
             }
         },
         series: [{
-            name: 'CPU',
+            name: 'Illum',
             data: []
         }]
     });
