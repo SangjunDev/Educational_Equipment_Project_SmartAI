@@ -1,0 +1,1 @@
+# Educational_Equipment_Project_SmartAI
