@@ -17,7 +17,29 @@
 			}
 		});
 	</script>
-    
+
+
+	<!-- Ajax Sensor-->
+
+	function requestData() {
+		$.ajax({
+			url: '/sensor/re_gas',
+			success: function(point) {
+				console.log(point)
+				var series = chart.series[0],
+					shift = series.data.length > 20; 
+	
+				chart.series[0].addPoint(point, true, shift);
+	
+				setTimeout(requestData, 1000);
+			},
+			cache: false
+		});
+	}
+
+
+	<!-- DB Table-->
+
 	<!-- MQTT Control -->
 	<script src="..\static\js\actuator_control.js"></script>
 
@@ -311,20 +333,37 @@
 						<div class="col-md-4">
 							<div class="card">
 								<div class="card-header">
-									<div class="card-head-row">
 										<div class="card-title">Data Table</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<div class="chart-container" style="min-width: 375px">
-										<!--Flask 그래프 API 넣기-->
-											<div class="container-fluid">
-												<div class="row">
-													<div class="container-fluid" id="container_1"></div>
+											<div class="card-body">
+												<div class="table-responsive">
+													<table id="basic-datatables" class="display table table-striped table-hover" >
+														<thead>
+															<tr>
+																<th>Sensor</th>
+																<th>Data</th>
+																<th>InsertTime</th>
+															</tr>
+														</thead>									
+														<tbody>
+															{% for i in data_list %}
+															<tr>
+																<td>{{ i[0] }}</td>
+																<td>{{ i[1] +" lx"  }}</td>
+																<td>{{ i[2] }}</td>
+																
+															</tr>
+															{% endfor %}
+															{{ pagination.links | safe }}
+														</tbody>
+															
+															
+													</table>
+
+												
 												</div>
 											</div>
+
 									</div>
-								
 								</div>
 							</div>
 						</div>

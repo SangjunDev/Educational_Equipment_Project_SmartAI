@@ -17,3 +17,6 @@ def live_resource():
     response = make_response(json.dumps(date))
     response.content_type = 'application/json'
     return response
+
+
+    
