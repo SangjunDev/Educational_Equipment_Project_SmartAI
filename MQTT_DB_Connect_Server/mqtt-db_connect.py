@@ -45,7 +45,7 @@ def subscribe(client: mqtt):
     
     #for topics in topic:
      #client.subscribe(topics)
-    client.subscribe(topic) 
+    client.subscribe("outTopic2") 
     client.on_message = on_message
     
 
@@ -67,5 +67,5 @@ if __name__ == '__main__':
      atexit.register(db_truncate)
      run()
     except :
-        exit()
+     exit()
         
