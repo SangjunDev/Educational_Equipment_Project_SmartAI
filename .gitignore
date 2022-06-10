@@ -2,3 +2,4 @@
 .venv
 SmartAI/__pycache__
 SmartAI/Module/__pycache__
+SmartAI/templates/test

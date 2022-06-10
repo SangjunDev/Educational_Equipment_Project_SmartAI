@@ -23,5 +23,5 @@ class Database():
         return row
     
  
-    def commit():
+    def commit(self):
         self.db.commit()

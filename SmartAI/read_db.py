@@ -6,7 +6,7 @@ from SmartAI.Module import dbModule
 blue_read = Blueprint("read_db", __name__)
 
 
-@blue_read.route('/sensor/live_illumunance')
+@blue_read.route('/sensor/live_illumunance', methods=['GET'])
 def live_illumunance():
     ill_sql = " SELECT payload FROM ILLUMINANCE ORDER BY id DESC LIMIT 1"
     
@@ -18,7 +18,7 @@ def live_illumunance():
     
     return ill_data
 
-@blue_read.route('/sensor/live_gas')
+@blue_read.route('/sensor/live_gas', methods=['GET'])
 def live_gas():
     gas_sql = " SELECT payload FROM GAS ORDER BY id DESC LIMIT 1"
     
@@ -29,7 +29,7 @@ def live_gas():
     
     return gas_data
 
-@blue_read.route('/sensor/live_temp')
+@blue_read.route('/sensor/live_temp', methods=['GET'])
 def live_temp():
 
     temp_sql = " SELECT payload_t,payload_h FROM TEMP ORDER BY id DESC LIMIT 1"    
@@ -40,7 +40,7 @@ def live_temp():
     temp_data.content_type= 'application/json'
     return temp_data
 
-@blue_read.route('/sensor/live_pir')
+@blue_read.route('/sensor/live_pir', methods=['GET'])
 def live_pir():
     pir_db = dbModule.Database()
     
@@ -49,7 +49,7 @@ def live_pir():
     pir_data = make_response(json.dumps(pir_row, default=str))
     return pir_data
 
-@blue_read.route('/sensor/live_dust')
+@blue_read.route('/sensor/live_dust', methods=['GET'])
 def live_dust():
     
     dust_sql = " SELECT payload FROM DUST ORDER BY id DESC LIMIT 1"

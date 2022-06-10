@@ -10,7 +10,7 @@ blue_index = Blueprint("graph", __name__)
 def graph():
     return render_template('test/test.html')
 
-@blue_index.route('/live_resource')
+@blue_index.route('/live_resource', methods=['GET'])
 def live_resource():
     cpu = psutil.cpu_percent()
     date = [time()*1000, cpu]
