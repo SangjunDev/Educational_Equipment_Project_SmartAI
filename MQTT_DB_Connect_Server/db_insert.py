@@ -15,13 +15,12 @@ cur = db.cursor()
 insert_sql = "INSERT INTO GAS(topic,payload) VALUES(%s,%s)"
 
 def insert_db():
-    cur.execute(insert_sql, ('gas', '2'))
-    db.commit()
-    time.sleep(3)
-    cur.execute(insert_sql, ('gas', '3'))
-    db.commit()
     
-
+    for i in range(10000):
+        cur.execute(insert_sql, ('gas', str(i)))
+        db.commit()
+        time.sleep(5)
+    
 
 def db_truncate():
     sql = "TRUNCATE GAS;"
@@ -34,7 +33,6 @@ if __name__ == '__main__':
         while True:
             atexit.register(db_truncate)
             insert_db()
-            time.sleep(5)
     except:
         exit()        
      

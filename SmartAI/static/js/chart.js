@@ -1,5 +1,7 @@
 var chart;
 
+
+
 function requestData() {
     $.ajax({
         url: '/live_resource',

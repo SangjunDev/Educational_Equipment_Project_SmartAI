@@ -6,6 +6,10 @@ blue_index = Blueprint("index", __name__)
 def main():
  return render_template('index.html')
 
+@blue_index.route("/test")
+def main2():
+ return render_template('test.html')
+
 '''Actuator Page Mapping'''
 @blue_index.route("/Actuator/LED")
 def actuator_light():
@@ -70,6 +74,4 @@ def module_dust():
 def module_pir():
     return render_template('module_section/Pir.html')
 
-@blue_index.route("/2")
-def main2():
- return render_template('test/index.html')
+

@@ -1,3 +1,4 @@
 .vscode
 .venv
 SmartAI/__pycache__
+SmartAI/Module/__pycache__
