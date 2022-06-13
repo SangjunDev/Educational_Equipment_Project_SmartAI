@@ -1,7 +1,7 @@
-from flask import Blueprint, make_response, request
+from flask import Blueprint, make_response, render_template, request
 import json
 
-from SmartAI.Module import dbModule
+from SmartAI.module import dbModule
 
 blue_read = Blueprint("read_db", __name__)
 
@@ -31,7 +31,6 @@ def live_gas():
 
 @blue_read.route('/sensor/live_temp', methods=['GET'])
 def live_temp():
-
     temp_sql = " SELECT payload_t,payload_h FROM TEMP ORDER BY id DESC LIMIT 1"    
     
     temp_db = dbModule.Database()
@@ -51,7 +50,6 @@ def live_pir():
 
 @blue_read.route('/sensor/live_dust', methods=['GET'])
 def live_dust():
-    
     dust_sql = " SELECT payload FROM DUST ORDER BY id DESC LIMIT 1"
     
     dust_db = dbModule.Database()
@@ -59,6 +57,10 @@ def live_dust():
     dust_data = make_response(json.dumps(dust_row, default=str))
     dust_data.content_type= 'application/json'
     return dust_data
+
+
+    
+    
 
  
 

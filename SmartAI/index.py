@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template 
 
+from SmartAI.module import dbModule
+
 blue_index = Blueprint("index", __name__)
 
 @blue_index.route("/")
@@ -8,7 +10,7 @@ def main():
 
 @blue_index.route("/test")
 def main2():
- return render_template('test.html')
+ return render_template('test/test.html')
 
 '''Actuator Page Mapping'''
 @blue_index.route("/Actuator/LED")
@@ -56,7 +58,14 @@ def sensor_pir():
 '''Module Page Mapping'''
 @blue_index.route("/Module/Light")
 def module_light():
-    return render_template('module_section/Light.html')
+    table_db = dbModule.Database()
+    
+    sql = "SELECT * FROM GAS"
+    
+    row = table_db.executeAll(sql)
+    
+    return render_template('module_section/Light.html', rows = row)
+    #return render_template('module_section/Light.html')
 
 @blue_index.route("/Module/Gas")
 def module_gas():

@@ -1,7 +1,7 @@
 from flask import Blueprint,request
 import paho.mqtt.client as mqtt
 
-from SmartAI.Module import mqttModule
+from SmartAI.module import mqttModule
 
 blue_control = Blueprint("control", __name__)
 
