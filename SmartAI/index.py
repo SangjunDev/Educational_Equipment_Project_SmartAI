@@ -37,11 +37,21 @@ def actuator_switch():
 '''Sensor Page Mapping'''
 @blue_index.route("/Sensor/Illuminance")
 def sensor_illumunance():
-    return render_template('sensor_section/Illuminance.html')
+    table_db = dbModule.Database()
+    
+    sql = "SELECT * FROM ILLUMINANCE"
+    
+    row = table_db.executeAll(sql)
+    return render_template('sensor_section/Illuminance.html', rows=row)
 
 @blue_index.route("/Sensor/Gas")
 def sensor_gas():
-    return render_template('sensor_section/Gas.html')
+    table_db = dbModule.Database()
+    
+    sql = "SELECT * FROM GAS"
+    
+    row = table_db.executeAll(sql)
+    return render_template('sensor_section/Gas.html', rows=row)
 
 @blue_index.route("/Sensor/Temp")
 def sensor_temp():
@@ -54,11 +64,21 @@ def sensor_temp():
 
 @blue_index.route("/Sensor/Dust")
 def sensor_dust():
-    return render_template('sensor_section/Dust.html')
+    table_db = dbModule.Database()
+    
+    sql = "SELECT * FROM DUST"
+    
+    row = table_db.executeAll(sql)
+    return render_template('sensor_section/Dust.html', rows=row)
 
 @blue_index.route("/Sensor/Pir")
 def sensor_pir():
-    return render_template('sensor_section/Pir.html')
+    table_db = dbModule.Database()
+    
+    sql = "SELECT * FROM ILLUMINANCE"
+    
+    row = table_db.executeAll(sql)
+    return render_template('sensor_section/Pir.html', rows=row)
 
 '''Module Page Mapping'''
 @blue_index.route("/Module/Light")
@@ -70,7 +90,6 @@ def module_light():
     row = table_db.executeAll(sql)
     
     return render_template('module_section/Light.html', rows = row)
-    #return render_template('module_section/Light.html')
 
 @blue_index.route("/Module/Gas")
 def module_gas():
