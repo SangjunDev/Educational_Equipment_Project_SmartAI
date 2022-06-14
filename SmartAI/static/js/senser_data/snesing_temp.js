@@ -12,10 +12,11 @@ $(function temp() {
                 console.log(data);
                 $("#temp_data").text(data[0][2]);
                 $("#humi_data").text(data[0][3]);
+                
             }
 
         });
 
-    }, 5000);
+    }, 1000);
 
 });

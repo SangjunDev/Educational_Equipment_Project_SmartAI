@@ -1,8 +1,9 @@
 $(function gas() {
+    timer = setInterval(function () {
 
         $.ajax({
 
-            "url": "/api/gas",
+            "url": "/sensor/live_gas",
             type:"GET",
             dataType:"json",
             cache: false,
@@ -10,12 +11,12 @@ $(function gas() {
                 console.log(data);
                 $("#gas_data").text(data[0][2]);
 
-                setTimeout(gas, 1000);
-            }, 
-            cache: false
+               
+            }
             
-        }
-        );
+        });
+        
+    },1000);
 
 
 

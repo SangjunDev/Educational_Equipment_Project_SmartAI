@@ -1,6 +1,5 @@
-$(function illuminance() {
-
-    timer = setInterval(function () {
+$(function illuminance() {  
+    timer = setInterval(function () { 
 
         $.ajax({
 
@@ -11,11 +10,15 @@ $(function illuminance() {
             success: function (data) {
                 console.log(data);
                 $("#illuminance_data").text(data[0][2]);
+
+                
+                
             }
 
         });
 
-    }, 5000);
+    },1000);
+    
 
 });
 

@@ -45,7 +45,12 @@ def sensor_gas():
 
 @blue_index.route("/Sensor/Temp")
 def sensor_temp():
-    return render_template('sensor_section/Temp.html')
+    table_db = dbModule.Database()
+    
+    sql = "SELECT * FROM TEMP"
+    row = table_db.executeAll(sql)    
+    return render_template('sensor_section/Temp.html', rows = row)    
+
 
 @blue_index.route("/Sensor/Dust")
 def sensor_dust():
