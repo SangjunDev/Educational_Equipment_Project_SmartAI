@@ -4,11 +4,13 @@ $(function gas() {
 
         $.ajax({
 
-            "url": "/sensor/live_dust",
+            "url": "/api/dust",
+            type:"GET",
+            dataType:"json",
             cache: false,
             success: function (data) {
                 console.log(data);
-                $("#dust_data").text(data);
+                $("#dust_data").text(data[0][2]);
             }
 
         });

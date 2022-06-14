@@ -2,13 +2,15 @@ $(function gas() {
 
         $.ajax({
 
-            "url": "/sensor/live_gas",
+            "url": "/api/gas",
+            type:"GET",
+            dataType:"json",
             cache: false,
             success: function (data) {
                 console.log(data);
-                $("#gas_data").text(data);
+                $("#gas_data").text(data[0][2]);
 
-                setTimeout(gas, 5000);
+                setTimeout(gas, 1000);
             }, 
             cache: false
             

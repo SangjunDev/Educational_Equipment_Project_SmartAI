@@ -4,11 +4,14 @@ $(function temp() {
 
         $.ajax({
 
-            "url": "/sensor/live_temp",
+            "url": "/api/temp",
+            type:"GET",
+            dataType:"json",
             cache: false,
             success: function (data) {
                 console.log(data);
-                $("#temp_data").text(data);
+                $("#temp_data").text(data[0][2]);
+                $("#humi_data").text(data[0][3]);
             }
 
         });

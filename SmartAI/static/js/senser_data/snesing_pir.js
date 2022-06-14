@@ -5,11 +5,13 @@ $(function pir() {
 
         $.ajax({
 
-            "url": "/sensor/live_pir",
+            "url": "/api/pir",
+            type:"GET",
+            dataType:"json",
             cache: false,
             success: function (data) {
                 console.log(data);
-                $("#pir_data").text(data);
+                $("#pir_data").text(data[0][2]);
             }
 
         });

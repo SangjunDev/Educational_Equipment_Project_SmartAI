@@ -4,11 +4,13 @@ $(function illuminance() {
 
         $.ajax({
 
-            "url": "/sensor/live_illumunance",
+            "url": "/api/illumunance",
+            type:"GET",
+            dataType:"json",
             cache: false,
             success: function (data) {
                 console.log(data);
-                $("#illuminance_data").text(data);
+                $("#illuminance_data").text(data[0][2]);
             }
 
         });

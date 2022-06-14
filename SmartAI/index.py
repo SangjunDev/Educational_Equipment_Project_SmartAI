@@ -60,7 +60,7 @@ def sensor_pir():
 def module_light():
     table_db = dbModule.Database()
     
-    sql = "SELECT * FROM GAS"
+    sql = "SELECT * FROM ILLUMINANCE"
     
     row = table_db.executeAll(sql)
     
@@ -69,18 +69,35 @@ def module_light():
 
 @blue_index.route("/Module/Gas")
 def module_gas():
-    return render_template('module_section/Gas.html')
+    table_db = dbModule.Database()
+    
+    sql = "SELECT * FROM GAS"
+    row = table_db.executeAll(sql)
+
+    return render_template('module_section/Gas.html', rows = row)
 
 @blue_index.route("/Module/Temp")
 def module_temp():
-    return render_template('module_section/Temp.html')
+    table_db = dbModule.Database()
+    
+    sql = "SELECT * FROM TEMP"
+    row = table_db.executeAll(sql)    
+    return render_template('module_section/Temp.html', rows = row)
 
 @blue_index.route("/Module/Dust")
 def module_dust():
-    return render_template('module_section/Dust.html')
+    table_db = dbModule.Database()
+    
+    sql = "SELECT * FROM DUST"
+    row = table_db.executeAll(sql)    
+    return render_template('module_section/Dust.html', rows = row)
 
 @blue_index.route("/Module/Pir")
 def module_pir():
-    return render_template('module_section/Pir.html')
+    table_db = dbModule.Database()
+    
+    sql = "SELECT * FROM PIR"
+    row = table_db.executeAll(sql)    
+    return render_template('module_section/Pir.html', rows = row)
 
 

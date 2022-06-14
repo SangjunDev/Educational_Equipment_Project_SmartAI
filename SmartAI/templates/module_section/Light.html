@@ -30,22 +30,14 @@
 	<link rel="stylesheet" href="../static/css/demo.css">
 
 	
-	<!--Gragh JS
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="/static/js/chart.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>	
-	-->
+	<!-- Chart JS-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/static/js/chart2.js"></script>
+	<script src="/static/js/plugin/chart.js/chart_illumnance.js"></script>
 
-	<!-- Ajax Sensor-->
+	<!-- Sensor JS-->
+	<script src="/static/js/senser_data/snesing_illumnance.js"></script>
 	
-	<script src="/static/js/senser_data/snesing_gas.js"></script>
 
 </head>
 
@@ -275,16 +267,10 @@
 									<div class="row py-3">
 										<div class="col-md-4 d-flex flex-column justify-content-around">
 											<div >
-												<h2 class="fw-bold text-uppercase text-success op-8">Illuminance</h2>
-												<h3 class="fw-bold" id="gas_data" style="display:inline;"></h3>
+												<h2 class="fw-bold text-uppercase text-success op-8">Illuminance</h2><br>
+												<h3 class="fw-bold" id="illuminance_data" style="display:inline;"></h3>
 												<h3 style="display:inline;"> lx</h3>
 											</div>
-											<!--
-											<div>
-												<h2 class="fw-bold text-uppercase text-danger op-8">습도</h2>
-												<h3 class="fw-bold">0.0 %</h3>
-											</div>
-										-->
 										</div>
 										<div class="col-md-8">
 											<div id="chart-container">
@@ -299,7 +285,7 @@
 
 					
 					<div class="row">
-						<div class="col-md-5">
+						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
 									<div class="card-head-row">
@@ -308,10 +294,9 @@
 								</div>
 								<div class="card-body">
 									<div class="chart-container" >
-										<!--Flask 그래프 API 넣기-->
-											<div class="container-fluid">
+											<div class="container-fluid" >
 												<div class="row">
-													<canvas id="line-chart" ></canvas>
+													<canvas id="line-chart" width="500vw" height="150vh" ></canvas>
 												</div>
 											</div>
 									</div>
@@ -319,44 +304,16 @@
 							</div>
 						</div>
 						
-						<div class="col-md-7">
+						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
 										<div class="card-title">Data Table</div>
 											<div class="card-body">
-												<!--
 												<div class="table-responsive">
 													<table id="basic-datatables" class="display table table-striped table-hover" >
 														<thead>
 															<tr>
-																<th>Sensor</th>
-																<th>Data</th>
-																<th>InsertTime</th>
-															</tr>
-														</thead>									
-														<tbody>
-															{% for i in data_list %}
-															<tr>
-																<td>{{ i[0] }}</td>
-																<td>{{ i[1] +" lx"  }}</td>
-																<td>{{ i[2] }}</td>
-																
-															</tr>
-															{% endfor %}
-															
-														</tbody>
-															
-															
-													</table>
-
-												
-												</div>
-												-->
-
-												<div class="table-responsive">
-													<table id="basic-datatables" class="display table table-striped table-hover" >
-														<thead>
-															<tr>
+																<th>Num</th>
 																<th>Sensor</th>
 																<th>Data</th>
 																<th>Time</th>
@@ -365,6 +322,7 @@
 														<tbody>
 															{% for row in rows %}
 															<tr>
+																<td>{{row[0]}}</td>
 																<td>{{row[1]}}</td>
 																<td>{{row[2]+' lx'}} </td>
 																<td>{{row[3]}}</td>
@@ -556,7 +514,7 @@
 	<script >
 		$(document).ready(function() {
 			$('#basic-datatables').DataTable({
-				"pageLength": 4
+				"pageLength": 5
 			});
 		});
 	</script>
