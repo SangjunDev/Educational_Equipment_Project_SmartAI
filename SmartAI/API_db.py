@@ -11,8 +11,8 @@ def live_illumunance():
     ill_sql = " SELECT id,topic,payload,time(real_t) FROM ILLUMINANCE ORDER BY id DESC LIMIT 1"
     
     ill_db = dbModule.Database()
-    
     ill_row = ill_db.executeAll(ill_sql)
+    
     ill_data = make_response(json.dumps(ill_row, default=str))
     ill_data.content_type= 'application/json'
     

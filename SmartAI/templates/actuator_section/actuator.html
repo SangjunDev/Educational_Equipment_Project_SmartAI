@@ -17,9 +17,13 @@
 			}
 		});
 	</script>
-    
-	<!-- MQTT Control -->
-	<script src="..\static\js\actuator_control.js"></script>
+
+	<script language="javascript">
+		function showPopup() { 
+			window.open("/popup", "a", "width=300, height=200, left=100, top=50"); }
+
+	</script>		
+
 
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="../static/css/bootstrap.min.css">
@@ -28,15 +32,13 @@
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="../static/css/demo.css">
 
+	<!-- Button CSS-->
+	<link rel="stylesheet" type="text/css" href="../static/css/button.css" />	
+
+	<!-- MQTT Control -->
+	<script src="..\static\js\actuator_button.js"></script>
 	
-	<!--Gragh JS-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="/static/js/chart.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>	
+
 </head>
 
 <body>
@@ -75,40 +77,12 @@
 
 					<ul class="nav nav-primary">
 						<li class="nav-item">
-							<a data-toggle="collapse" href="#dashboard_1"  class="collapsed" aria-expanded="true">
+							
+							<a data-toggle="collapse" href="/Actuator"  class="collapsed" aria-expanded="true">
 								<i class="fas fa-home"></i>
 								<p>Actuator</p>
-								<span class="caret"></span>
+								
 							</a>
-							<div class="collapse in show" id="dashboard_1">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="/Actuator/LED">
-											<span class="sub-item">LED</span>
-										</a>
-									</li>
-									<li>
-										<a href="/Actuator/Fan">
-											<span class="sub-item">Fan</span>
-										</a>
-									</li>
-									<li>
-										<a href="/Actuator/SolenoidValve">
-											<span class="sub-item">Solenoid Valve</span>
-										</a>
-									</li>
-									<li>
-										<a href="/Actuator/DoorLock">
-											<span class="sub-item">DoorLock</span>
-										</a>
-									</li>
-									<li>
-										<a href="/Actuator/Switch">
-											<span class="sub-item">Switch</span>
-										</a>
-									</li>																															
-								</ul>
-							</div>
 						</li>
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard_2" class="collapsed" aria-expanded="flase">
@@ -217,122 +191,182 @@
 					<div class="page-inner py-5">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
-								<h2 class="text-white pb-2 fw-bold">Light Module</h2>
-								<h5 class="text-white op-7 mb-2">SmartAI Light Module Dashboard</h5>
+								<h2 class="text-white pb-2 fw-bold">Actuator</h2>
+								<h5 class="text-white op-7 mb-2">SmartAI Actuator Dashboard</h5>
 							</div>
 
 						</div>
 					</div>
 				</div>
+
 				<div class="page-inner mt--5">
 					<div class="row mt--2">
-						<div class="col-md-6">
+
+						<div class="col-md-4">
 							<div class="card full-height">
 								<div class="card-body">
-									<div class="card-title">Status</div>
-									<div id="result2">Initial State</div>
+									<div class="card-title">State</div>
+									<div id="result">Initial State</div>
 									<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
 										<div class="px-2 pb-2 pb-md-0 text-center">
-											<div id="circles-1">
-											</div>
-											
+											<div id="circles-6"></div>
+											<br>
+											<h4 class="fw-bold">Voice</h4>
 											<h6 class="fw-bold mt-3 mb-0">
-												<button type="button" class="btn btn-primary btn-border btn-round" onclick="led2_on()"> LED On </button>
+												<button type="button" class="btn btn-primary btn-border btn-round" onclick="showPopup()"> Voice </button>
 											</h6>
 										</div>
-										<div class="px-2 pb-2 pb-md-0 text-center">
-											<div id="circles-2">
-											</div>
-											</button>
-											<h6 class="fw-bold mt-3 mb-0">
-												<button type="button" class="btn btn-primary btn-border btn-round" onclick="led2_off()"> LED Off </button>
-											</h6>
-										</div>
-										<div class="px-2 pb-2 pb-md-0 text-center">
-											<div id="circles-3"></div>
-											<h6 class="fw-bold mt-3 mb-0">
-												<button type="button" class="btn btn-primary btn-border btn-round" onclick="led2_off()"> Voice </button>
-											</h6>
-										</div>
-									</div>
+
+									</div><br>
+									
 								</div>
+
 							</div>
-						</div>
-						<div class="col-md-6">
+						</div> 						
+						
+
+
+						<div class="col-md-4">
 							<div class="card full-height">
 								<div class="card-body">
-									<div class="card-title">Illuminance</div>
-									<div class="row py-3">
-										<div class="col-md-4 d-flex flex-column justify-content-around">
-											<div>
-												<h2 class="fw-bold text-uppercase text-success op-8">Illuminance</h2>
-												<h3 class="fw-bold">0.0 lx</h3>
-											</div>
-											<!--
-											<div>
-												<h2 class="fw-bold text-uppercase text-danger op-8">습도</h2>
-												<h3 class="fw-bold">0.0 %</h3>
-											</div>
-										-->
-										</div>
-										<div class="col-md-8">
-											<div id="chart-container">
+									<div class="card-title">State</div>
+									<div id="result_led">Initial State</div>
+									<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+										<div class="px-2 pb-2 pb-md-0 text-center">
+											<div id="circles-8">
+											</div><br>
+											<h4 class="fw-bold">LED</h4>
+											<h6 class="fw-bold mt-3 mb-0">
+												<label class="switch">
+													<input type="checkbox" onclick = "led(this)">
+													<span class="slider round"></span>
+													
+												</label>
 												
-											</div>
+											</h6>
+											
 										</div>
+
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> 
+						
+						<div class="col-md-4">
+							<div class="card full-height">
+								<div class="card-body">
+									<div class="card-title">State</div>
+									<div id="result_fan">Initial State</div>
+									<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+										<div class="px-2 pb-2 pb-md-0 text-center">
+											<div id="circles-2">
+											</div><br>
+											<h4 class="fw-bold">FAN</h4>
+											<h6 class="fw-bold mt-3 mb-0">
+												<label class="switch">
+													<input type="checkbox" onclick = "fan(this)">
+													<span class="slider round"></span>
+													
+												</label>
+												
+											</h6>
+											
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div> 		
 					</div>
+
 
 					
 					<div class="row">
-						<div class="col-md-8">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-head-row">
-										<div class="card-title">Illuminance</div>
-									</div>
-								</div>
+						<div class="col-md-4">
+							<div class="card full-height">
 								<div class="card-body">
-									<div class="chart-container" style="min-width: 375px">
-										<!--Flask 그래프 API 넣기-->
-											<div class="container-fluid">
-												<div class="row">
-													<div class="container-fluid" id="container_1"></div>
-												</div>
-											</div>
+									<div class="card-title">State</div>
+									<div id="result_solenoid">Initial State</div>
+									<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+										<div class="px-2 pb-2 pb-md-0 text-center">
+											<div id="circles-4">
+											</div><br>
+											<h4 class="fw-bold">Solenoid Valve</h4>
+											<h6 class="fw-bold mt-3 mb-0">
+												<label class="switch">
+													<input type="checkbox" onclick = "solenoid(this)">
+													<span class="slider round"></span>
+													
+												</label>
+												
+											</h6>
+											
+										</div>
+
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> 
 						
 						<div class="col-md-4">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-head-row">
-										<div class="card-title">Data Table</div>
-									</div>
-								</div>
+							<div class="card full-height">
 								<div class="card-body">
-									<div class="chart-container" style="min-width: 375px">
-										<!--Flask 그래프 API 넣기-->
-											<div class="container-fluid">
-												<div class="row">
-													<div class="container-fluid" id="container_1"></div>
-												</div>
-											</div>
+									<div class="card-title">State</div>
+									<div id="result_doorlock">Initial State</div>
+									<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+										<div class="px-2 pb-2 pb-md-0 text-center">
+											<div id="circles-1">
+											</div><br>
+											<h4 class="fw-bold">Door Lock</h4>
+											<h6 class="fw-bold mt-3 mb-0">
+												<label class="switch">
+													<input type="checkbox" onclick = "doorlock(this)">
+													<span class="slider round"></span>
+													
+												</label>
+												
+											</h6>
+											
+										</div>
+
 									</div>
-								
 								</div>
 							</div>
-						</div>
+						</div> 
+
+						<div class="col-md-4">
+							<div class="card full-height">
+								<div class="card-body">
+									<div class="card-title">State</div>
+									<div id="result_button">Initial State</div>
+									<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+										<div class="px-2 pb-2 pb-md-0 text-center">
+											<div id="circles-5">
+											</div><br>
+											<h4 class="fw-bold">Button</h4>
+											<h6 class="fw-bold mt-3 mb-0">
+												<label class="switch">
+													<input type="checkbox" onclick = "button(this)">
+													<span class="slider round"></span>
+													
+												</label>
+												
+											</h6>
+											
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div> 
 					</div>
 
 
+
+
 				</div>
-			<!-- 무료 템플릿 저작권-->		 
+			<!-- 무료 템플릿 저작권-->
+			<br><br><br<br><br><br>			 
 			<footer class="footer">
 				<div class="container-fluid">
 					<nav class="pull-left">
@@ -376,13 +410,6 @@
 	<!-- jQuery Scrollbar -->
 	<script src="../static/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
-
-	<!-- Chart JS -->
-	<script src="../static/js/plugin/chart.js/chart.min.js"></script>
-
-	<!-- jQuery Sparkline -->
-	<script src="../static/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
-
 	<!-- Chart Circle -->
 	<script src="../static/js/plugin/chart-circle/circles.min.js"></script>
 
@@ -392,20 +419,11 @@
 	<!-- Bootstrap Notify -->
 	<script src="../static/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
-	<!-- jQuery Vector Maps -->
-	<script src="../static/js/plugin/jqvmap/jquery.vmap.min.js"></script>
-	<script src="../static/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
-
 	<!-- Sweet Alert -->
 	<script src="../static/js/plugin/sweetalert/sweetalert.min.js"></script>
 
 	<!-- Atlantis JS -->
 	<script src="../static/js/atlantis.min.js"></script>
-
-
-	<!-- Atlantis DEMO methods, don't include it in your project! -->
-	<script src="../static/js/setting-demo.js"></script>
-	<script src="../static/js/demo.js"></script>
 	<script>
 		Circles.create({
 			id:'circles-1',
@@ -452,6 +470,114 @@
 			styleWrapper:true,
 			styleText:true
 		})
+
+		Circles.create({
+			id:'circles-4',
+			radius:45,
+			value:100,
+			maxValue:100,
+			width:3,
+			text: "",
+			images:"..\static\img\arashmil.jpg",
+			colors:['#f1f1f1', '#F25961'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+		
+		Circles.create({
+			id:'circles-5',
+			radius:45,
+			value:100,
+			maxValue:100,
+			width:3,
+			text: "",
+			images:"..\static\img\arashmil.jpg",
+			colors:['#f1f1f1', '#F25961'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})	
+		Circles.create({
+			id:'circles-6',
+			radius:45,
+			value:100,
+			maxValue:100,
+			width:3,
+			text: "",
+			images:"..\static\img\arashmil.jpg",
+			colors:['#f1f1f1', '#F25961'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+		Circles.create({
+			id:'circles-7',
+			radius:45,
+			value:100,
+			maxValue:100,
+			width:3,
+			text: "",
+			images:"..\static\img\arashmil.jpg",
+			colors:['#f1f1f1', '#F25961'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})		
+		Circles.create({
+			id:'circles-8',
+			radius:45,
+			value:100,
+			maxValue:100,
+			width:3,
+			text: "",
+			images:"..\static\img\arashmil.jpg",
+			colors:['#f1f1f1', '#F25961'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})		
+		Circles.create({
+			id:'circles-9',
+			radius:45,
+			value:100,
+			maxValue:100,
+			width:3,
+			text: "",
+			images:"..\static\img\arashmil.jpg",
+			colors:['#f1f1f1', '#F25961'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+		Circles.create({
+			id:'circles-10',
+			radius:45,
+			value:100,
+			maxValue:100,
+			width:3,
+			text: "",
+			images:"..\static\img\arashmil.jpg",
+			colors:['#f1f1f1', '#F25961'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})						
+
 
 		var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
 
@@ -501,5 +627,15 @@
 			fillColor: 'rgba(255, 165, 52, .14)'
 		});
 	</script>
+
+	<script >
+		$(document).ready(function() {
+			$('#basic-datatables').DataTable({
+				"pageLength": 5
+			});
+		});
+	</script>
+
+
 </body>
 </html>

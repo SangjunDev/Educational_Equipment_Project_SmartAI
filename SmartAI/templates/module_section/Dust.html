@@ -80,40 +80,11 @@
 
 					<ul class="nav nav-primary">
 						<li class="nav-item">
-							<a data-toggle="collapse" href="#dashboard_1"  class="collapsed" aria-expanded="false">
+							<a  href="/Actuator"  class="collapsed" >
 								<i class="fas fa-home"></i>
 								<p>Actuator</p>
-								<span class="caret"></span>
+								
 							</a>
-							<div class="collapse" id="dashboard_1">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="/Actuator/LED">
-											<span class="sub-item">LED</span>
-										</a>
-									</li>
-									<li>
-										<a href="/Actuator/Fan">
-											<span class="sub-item">Fan</span>
-										</a>
-									</li>
-									<li>
-										<a href="/Actuator/SolenoidValve">
-											<span class="sub-item">Solenoid Valve</span>
-										</a>
-									</li>
-									<li>
-										<a href="/Actuator/DoorLock">
-											<span class="sub-item">DoorLock</span>
-										</a>
-									</li>
-									<li>
-										<a href="/Actuator/Switch">
-											<span class="sub-item">Switch</span>
-										</a>
-									</li>																															
-								</ul>
-							</div>
 						</li>
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard_2" class="collapsed" aria-expanded="flase">
@@ -235,7 +206,7 @@
 							<div class="card full-height">
 								<div class="card-body">
 									<div class="card-title">Status</div>
-									<div id="result2">Initial State</div>
+									<div id="result_fan">Initial State</div>
 									<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
 										<div class="px-2 pb-2 pb-md-0 text-center">
 											<div id="circles-1">
@@ -243,7 +214,7 @@
 											<h4 class="fw-bold">Module</h4>
 											<h6 class="fw-bold mt-3 mb-0">
 												<label class="switch">
-													<input type="checkbox" onclick = "led_2(this)">
+													<input type="checkbox" onclick = "fan(this)">
 													<span class="slider round"></span>
 													
 												</label>
@@ -257,7 +228,7 @@
 											<h4 class="fw-bold">Acuator</h4>
 											<h6 class="fw-bold mt-3 mb-0">
 												<label class="switch">
-													<input type="checkbox" onclick = "led_2(this)">
+													<input type="checkbox" onclick = "fan(this)">
 													<span class="slider round"></span>
 													
 												</label>

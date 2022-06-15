@@ -56,7 +56,7 @@ def insert_temp():
     
 
 def db_truncate():
-    sql = "TRUNCATE GAS;"
+    sql = "TRUNCATE TEMP;"
     cur.execute(sql)
     db.commit()
     

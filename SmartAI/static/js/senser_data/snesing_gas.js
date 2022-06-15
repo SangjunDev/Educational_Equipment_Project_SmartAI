@@ -3,21 +3,18 @@ $(function gas() {
 
         $.ajax({
 
-            "url": "/sensor/live_gas",
+            "url": "/api/gas",
             type:"GET",
             dataType:"json",
             cache: false,
             success: function (data) {
                 console.log(data);
                 $("#gas_data").text(data[0][2]);
-
-               
             }
             
         });
         
     },1000);
-
 
 
 });
