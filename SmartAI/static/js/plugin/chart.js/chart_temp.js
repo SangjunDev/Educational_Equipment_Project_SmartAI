@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 function getGraph(){
       $.ajax({
-          url:"/api/temp",
+          url:"/json/temp",
           type:"GET",
           dataType:"json",
           cache: false,

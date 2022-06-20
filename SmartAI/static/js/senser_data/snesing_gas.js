@@ -3,7 +3,7 @@ $(function gas() {
 
         $.ajax({
 
-            "url": "/api/gas",
+            "url": "/json/gas",
             type:"GET",
             dataType:"json",
             cache: false,

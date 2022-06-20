@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 function getGraph(){
       $.ajax({
-          url:"/api/dust",
+          url:"/json/dust",
           type:"GET",
           dataType:"json",
           cache: false,

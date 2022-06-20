@@ -4,7 +4,7 @@ $(function gas() {
 
         $.ajax({
 
-            "url": "/api/dust",
+            "url": "/json/dust",
             type:"GET",
             dataType:"json",
             cache: false,

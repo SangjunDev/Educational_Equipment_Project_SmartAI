@@ -20,7 +20,7 @@
 
 	<script language="javascript">
 		function showPopup() { 
-			window.open("/popup", "a", "width=300, height=200, left=100, top=50"); }
+			window.open("/test2", "a", "width=300, height=200, left=100, top=50"); }
 
 	</script>		
 
@@ -321,13 +321,13 @@
 															</tr>
 														</thead>
 														<tbody>
-															{% for row in rows %}
+															{% for data in datas %}
 															<tr>
-																<td>{{row[0]}}</td>
-																<td>{{row[1]}}</td>
-																<td>{{row[2]}} </td>
-																<td>{{row[3]}}</td>
-																<td>{{row[4]}}</td>
+																<td>{{data[0]}}</td>
+																<td>{{data[1]}}</td>
+																<td>{{data[2]}} </td>
+																<td>{{data[3]}}</td>
+																<td>{{data[4]}}</td>
 															</tr>
 															{% endfor %}
 														</tbody>

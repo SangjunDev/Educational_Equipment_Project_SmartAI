@@ -14,7 +14,7 @@ class Mqtt_Broker():
         
     def Control_publish(self,topic,payload,args={}):
         try:
-            self.mqtt.publish(topic,payload)
-            return "OK"       
+             self.mqtt.publish(topic,payload)
+             return "OK"
         except:
             return "FAIL"

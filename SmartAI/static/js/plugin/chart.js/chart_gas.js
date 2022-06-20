@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 function getGraph(){
       $.ajax({
-          url:"/api/gas",
+          url:"/json/gas",
           type:"GET",
           dataType:"json",
           cache: false,

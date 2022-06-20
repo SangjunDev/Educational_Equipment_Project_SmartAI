@@ -3,7 +3,7 @@ $(function illuminance() {
 
         $.ajax({
 
-            "url": "/api/illumunance",
+            "url": "/json/illumunance",
             type:"GET",
             dataType:"json",
             cache: false,

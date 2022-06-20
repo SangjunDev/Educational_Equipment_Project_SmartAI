@@ -12,7 +12,7 @@ function led(element) {
                         result.innerHTML = "<h4 >ON</h4>";
                     }
             else {
-                        result.innerHTML = "<h4>Error</h4>"
+                        result.innerHTML = "<h4>Erro`r</h4>"
                     }  
         });
     }
@@ -26,7 +26,7 @@ function led(element) {
                         result.innerHTML = "<h4>OFF</h4>";
                     }
             else {
-                        result.innerHTML = "<h4>Error</h4>"
+                        result.innerHTML = "<h4>Erraor</h4>"
                     }  
         });
 

@@ -5,7 +5,7 @@ $(function pir() {
 
         $.ajax({
 
-            "url": "/api/pir",
+            "url": "/json/pir",
             type:"GET",
             dataType:"json",
             cache: false,

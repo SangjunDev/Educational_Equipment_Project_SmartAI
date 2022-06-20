@@ -2,13 +2,14 @@ import pymysql
 
 class Database():
     def __init__(self):
-        self.db = pymysql.connect(host='localhost',
+     self.db = pymysql.connect(host='localhost',
                                   user='root',
                                   password='1234qwer',
                                   db='SmartAI',
-                                  charset='utf8')
-        self.cursor = self.db.cursor()
- 
+                                  charset='utf8')     
+     self.cursor = self.db.cursor()
+        
+
     def execute(self, query, args={}):
         self.cursor.execute(query, args)  
  
@@ -20,6 +21,10 @@ class Database():
     def executeAll(self, query, args={}):
         self.cursor.execute(query, args)
         row = self.cursor.fetchall()
+        return row
+    
+    def raedTable(self, query):
+        row = self.executeAll(query)
         return row
     
     def commit(self):
