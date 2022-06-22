@@ -34,7 +34,6 @@ def fan_on():
 @blue_control.route("/fan/off", methods=['GET'])
 def fan_off():
    result=mqtt.Control_publish(topic['fan'],"0")
-   print(result)
    return result
 
 '''Solenoid Valve'''

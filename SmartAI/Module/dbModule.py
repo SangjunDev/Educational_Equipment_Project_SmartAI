@@ -1,12 +1,14 @@
-import pymysql
+#import pymysql
+import mariadb
+
 
 class Database():
     def __init__(self):
-     self.db = pymysql.connect(host='localhost',
+     self.db = mariadb.connect(host='127.0.0.1',
                                   user='root',
                                   password='1234qwer',
-                                  db='SmartAI',
-                                  charset='utf8')     
+                                  db='SmartAI')
+                                  #,charset='utf8')     
      self.cursor = self.db.cursor()
         
 
@@ -22,11 +24,7 @@ class Database():
         self.cursor.execute(query, args)
         row = self.cursor.fetchall()
         return row
-    
-    def raedTable(self, query):
-        row = self.executeAll(query)
-        return row
-    
+        
     def commit(self):
         self.db.commit()
         

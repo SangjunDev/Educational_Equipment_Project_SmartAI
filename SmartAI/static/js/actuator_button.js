@@ -3,6 +3,9 @@ function led(element) {
 
     if (element.checked == true){
 
+        
+
+
     fetch("/led/on")
     .then(response => response.text())
     .then(data => {

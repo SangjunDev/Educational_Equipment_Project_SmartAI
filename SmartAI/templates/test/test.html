@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Speech Recognition in Python</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}" />
+    <script src='/static/js/annyang.js'></script>
+    
+  </head>
+  <body>
+            
+    <div class="container">
+              <div>음성인식 결과 목록</div>
+              <li id="sttResult">시작</li>
+            </div>
+
+    <main>
+      <div class="btnComp">
+        <div class="container">
+          <input type="button" value="닫 기"  onclick="window.close();"/>
+          <input type="button" value = "마이크 시작" id="recBtn"/>
+          <input type="button" value = "마이크 끄기" id="stopBtn"/>
+        </div>
+      </div>
+
+
+  
+    </main>
+
+
+
+    <script>
+        (() => {
+            const recBtn = document.getElementById("recBtn");
+            const stopBtn = document.getElementById("stopBtn");
+            recBtn.addEventListener("click", recBtnHandler);
+            stopBtn.addEventListener("click", stopBtnHandler);
+          })();
+          
+          const ul = document.getElementById("sttResult");
+          
+          function recBtnHandler() {
+            annyang.start({ autoRestart: false, continuous: false });
+            const recognition = annyang.getSpeechRecognizer();
+            let final_transcript = "";
+            recognition.interimResults = true;
+            recognition.onresult = function (event) {
+              console.log(event);
+              // let interim_transcript = "";
+              // final_transcript = "";
+              for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                  final_transcript += event.results[i][0].transcript;
+                  console.log("final_transcript=" + final_transcript);
+                  if (final_transcript =='LED 꺼'){
+                        fetch("/led/off")
+                            .then(response => response.text())
+                            .then(data => {console.log(data);});
+                  } else if(final_transcript == 'LED 켜'){
+                    fetch("/led/on")
+                    .then(response => response.text())
+                    .then(data => {console.log(data);});
+                  }
+                  //annyang.trigger(final_transcript); //If the sentence is "final" for the Web Speech API, we can try to trigger the sentence
+                  const html = `<li>${final_transcript}</li>`;
+          
+                  ul.insertAdjacentHTML("beforeend", html);
+                } else {
+                  // interim_transcript += event.results[i][0].transcript;
+                  // console.log("interim_transcript=" + interim_transcript);
+                }
+              }
+              // console.log("중간값: " + interim_transcript);
+              // console.log("결과값: " + final_transcript);
+            };
+          }
+          
+          function stopBtnHandler() {
+            annyang.abort();
+          }
+
+
+    </script>
+  </body>
+</html>

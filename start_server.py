@@ -1,5 +1,7 @@
-from SmartAI import socketio, app
+from SmartAI import socketio, create_app
+
+app = create_app(debug = True)
 
 if __name__ == '__main__':
 
-    socketio.run(app,port=8080, debug=True)
+    socketio.run(app,port=8080)

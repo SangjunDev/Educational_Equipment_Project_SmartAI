@@ -1,8 +1,10 @@
-from flask import Blueprint, make_response, request
+from flask import Blueprint, make_response, redirect, url_for
 import json
+import sys
 
 
 from SmartAI.module import dbModule
+
 
 blue_api = Blueprint("api_db", __name__)
 
@@ -13,51 +15,48 @@ sql = { 'illuminace' : 'SELECT id,topic,payload,time(real_t) FROM ILLUMINANCE OR
         'pir': 'SELECT id,topic,payload,time(real_t) FROM PIR ORDER BY id DESC LIMIT 1'
 }
 
+def exportJson(query, args={}):
+    db=dbModule.Database()
+    row = db.executeAll(query, args={})
+    data = make_response(json.dumps(row, default=str))
+    data.content_type = 'application/json'
+    return data
+
 
 @blue_api.route('/json/illumunance', methods=['GET'])
 def live_illumunance():
-    db=dbModule.Database()
-    row = db.executeAll(sql['illuminace'])
-    ill_data = make_response(json.dumps(row, default=str))
-    ill_data.content_type= 'application/json'
-    
-    return ill_data
+    try:
+        return exportJson(sql['illuminace'])
+    except dbModule.Error as e:
+        return redirect(url_for('/'))
 
 @blue_api.route('/json/gas', methods=['GET'])
 def live_gas():
-    db=dbModule.Database()
-    row = db.executeAll(sql['gas'])
-    gas_data = make_response(json.dumps(row, default=str))
-    gas_data.content_type= 'application/json'
-    
-    return gas_data
+    try:
+        return  exportJson(sql['gas'])
+    except dbModule.Error as e:
+        return redirect(url_for('/'))
 
 @blue_api.route('/json/temp', methods=['GET'])
 def live_temp():
-    db=dbModule.Database()
-    row = db.executeAll(sql['temp'])
-    temp_data = make_response(json.dumps(row, default=str))
-    temp_data.content_type= 'application/json'
-    
-    return temp_data
-
+    try:
+        return exportJson(sql['temp'])
+    except dbModule.Error as e:
+        return redirect(url_for('/'))
+        
 @blue_api.route('/json/pir', methods=['GET'])
 def live_pir():
-    db=dbModule.Database()
-    row = db.executeAll(sql['pir'])
-    pir_data = make_response(json.dumps(row, default=str))
-    pir_data.content_type= 'application/json'
-    return pir_data
-
+    try:
+        return exportJson(sql['pir'])
+    except dbModule.Error as e:
+        return redirect(url_for('/'))
+        
 @blue_api.route('/json/dust', methods=['GET'])
 def live_dust():
-    db=dbModule.Database()
-    row = db.executeAll(sql['dust'])
-    dust_data = make_response(json.dumps(row, default=str))
-    dust_data.content_type= 'application/json'
-    
-    return dust_data
-
+    try:
+        return exportJson(sql['dust'])
+    except dbModule.Error as e:
+        return redirect(url_for('/'))
 
     
     

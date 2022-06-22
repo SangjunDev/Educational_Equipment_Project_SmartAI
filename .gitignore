@@ -2,7 +2,5 @@
 .venv
 SmartAI/__pycache__
 SmartAI/Module/__pycache__
-SmartAI/templates/test
-SmartAI/test.py
-client_secret_195573402600-imppqinscfpum2iv0u096cb2ivhd26cr.apps.googleusercontent.com.json
-.test
+
+
