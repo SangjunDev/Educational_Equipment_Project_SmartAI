@@ -48,11 +48,10 @@ def socketio_init(socketio):
                 to_client['time'] = str(message[0][2])
                 to_client['type'] = 'data'
                 emit('response',to_client, broadcast = True) 
-                socketio.sleep(5)  
-        
+                socketio.sleep(5)
         else:
-            if message == 'disconnect':
-                print('disconnect')
+            pass          
+        
                                    
     @socketio.on_error() 
     def error_handler(e):

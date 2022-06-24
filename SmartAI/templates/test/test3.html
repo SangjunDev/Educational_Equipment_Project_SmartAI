@@ -17,21 +17,20 @@
       
       socket.on('connect', function(){
         var connect_string = 'connect';
-        console.log(connect_string);
+        console.log(connect_string +'+' + socket.id);
         socket.emit('request', connect_string);
     });
 
     socket.on('disconnect', function(){
       var connect_string = 'disconnect';
-      console.log(connect_string);
-      socket.discnnect();
-      //socket.emit('server_temp2', connect_string);
+      console.log(connect_string+'+' + socket.id);
   });
       
       socket.on('response', function(msg){
               if(msg.type === 'data'){
                       $('#messages_1').text(msg.temp);
                       $('#messages_2').text(msg.humi);
+                      $('#messages_3').text(msg.time);
   
               }else{
                       $('#messages').text('error');
@@ -46,6 +45,7 @@
 
   <ul id="messages_1"></ul>
   <ul id="messages_2"></ul>
+  <ul id="messages_3"></ul>
 
 </body>
 </html>
