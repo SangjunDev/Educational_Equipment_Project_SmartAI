@@ -1,47 +1,57 @@
-let timeList = [];
-let tempList_t = [];
-let tempList_h = [];
+let messages_1 = [];
+let messages_2 = [];
+let messages_3 = [];
 var count =1;
 
-$(document).ready(function(){ 
 
-  getGraph();
+$(document).ready(function(){
+  var socket = io.connect('http://' + document.domain + ':' + location.port);
+  console.log('http://' + document.domain + ':' + location.port)
 
+  socket.on('connect', function(msg){
+          var connect_string = 'connect';
+          console.log('connect')
+          socket.emit('server_temp', connect_string);
+  });
+
+  socket.on('client_1', function(msg){
+          if(msg.type === 'data'){
+                  $('#messages_1').text(msg.temp);
+                  $('#messages_2').text(msg.humi);
+                  $('#messages_3').text(msg.humi);
+          }else{
+                  $('#messages').text('error');
+          }
+          console.log('Received Message : '+msg.type);
+  });
+
+  getGraph(messages_1,messages_2,messages_3);
 });
 
-function getGraph(){
-      $.ajax({
-          url:"/json/temp",
-          type:"GET",
-          dataType:"json",
-          cache: false,
-          success:function(data){
+function getGraph(data1, data2, data3){
+     	
 
-            timeList.push(data[0][4]);    				  
-            tempList_t.push(data[0][2]);
-            tempList_h.push(data[0][3]);		
-
+/*
               if(count>8){ 
-                timeList.shift();
-                tempList_t.shift();
-                tempList_h.shift();
+                data1.shift();
+                data2.shift();
+                data3.shift();
               }
               count++;	  
-
-            setTimeout(getGraph, 5000);
+*/
 
             chart= new Chart(document.getElementById("line-chart").getContext('2d'), {
                 type: 'line',
                 data: {
-                  labels: timeList,
+                  labels: data3,
                   datasets: [{ 
-                      data: tempList_t, 
+                      data: data1, 
                       label: "Temp",
                       borderColor: 'rgb(75, 192, 192)',
                       fill: false,
                       borderWidth: 2
                     },{ 
-                      data: tempList_h, 
+                      data: data2, 
                       label: "Humi",
                       borderColor: 'rgb(0, 255, 255)',
                       fill: false,
@@ -64,7 +74,6 @@ function getGraph(){
               });
 
                                  
-          }
-      }
-      );  
-  }; 
+          };
+
+

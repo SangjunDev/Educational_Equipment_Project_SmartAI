@@ -15,6 +15,7 @@ sql = { 'illuminace' : 'SELECT id,topic,payload,time(real_t) FROM ILLUMINANCE OR
         'pir': 'SELECT id,topic,payload,time(real_t) FROM PIR ORDER BY id DESC LIMIT 1'
 }
 
+
 def exportJson(query, args={}):
     db=dbModule.Database()
     row = db.executeAll(query, args={})

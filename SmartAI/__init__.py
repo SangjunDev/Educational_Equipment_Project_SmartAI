@@ -1,7 +1,8 @@
 from flask import Flask
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO,emit
 
 socketio = SocketIO(logger=True, engineio_logger=True)
+
 
 def create_app(debug = False):
     
@@ -15,13 +16,16 @@ def create_app(debug = False):
     from.import API_db
     from.import routes
     from.import test
+    from.import socket_event
     
     #app.register_blueprint(acuator_control.blue_control)
     app.register_blueprint(API_db.blue_api)
     app.register_blueprint(routes.blue_index)
     app.register_blueprint(test.blue_test)
+    app.register_blueprint(socket_event.blue_socket)
     
+    from SmartAI.socket_event import socketio_init
+    socketio_init(socketio)
+      
     return app
-
-
 

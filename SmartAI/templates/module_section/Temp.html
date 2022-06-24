@@ -40,15 +40,15 @@
 	
 	<!-- Chart JS-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/static/js/plugin/chart.js/chart_temp.js"></script>
-
-	<!-- Sensor JS-->
-	<script src="/static/js/senser_data/snesing_temp.js"></script>
+	<script  type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 
 	<!-- MQTT Control -->
 	<script src="..\static\js\actuator_button.js"></script>
-	
+
+	<!-- Socket Client-->	
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.min.js"></script>
+	<script type="text/javascript" src = '/static/js/socket/socket_temp.js'></script>
+
 	
 
 </head>
@@ -264,11 +264,11 @@
 										<div class="col-md-4 d-flex flex-column justify-content-around">
 											<div >
 												<h2 class="fw-bold text-uppercase text-success op-8">Temp</h2><br>
-												<h3 class="fw-bold" id="temp_data" style="display:inline;"></h3>
+												<h3 class="fw-bold" id="messages_1" style="display:inline;"></h3>
 												<h3 style="display:inline;"> °C</h3>
 												<br></br>
 												<h2 class="fw-bold text-uppercase text-success op-8" >Humidity</h2><br>
-												<h3 class="fw-bold" id="humi_data" style="display:inline;"></h3>
+												<h3 class="fw-bold" id="messages_2" style="display:inline;"></h3>
 												<h3 style="display:inline;"> g/m3</h3>
 											</div>
 										</div>

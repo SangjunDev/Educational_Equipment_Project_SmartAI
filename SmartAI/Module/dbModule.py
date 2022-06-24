@@ -1,14 +1,15 @@
 #import pymysql
-import mariadb
+import pymysql
 
 
 class Database():
     def __init__(self):
-     self.db = mariadb.connect(host='127.0.0.1',
+     self.db = pymysql.connect(host='127.0.0.1',
                                   user='root',
                                   password='1234qwer',
-                                  db='SmartAI')
-                                  #,charset='utf8')     
+                                  db='SmartAI',
+                                  charset='utf8')
+                                  #cursorclass=pymysql.cursors.DictCursor)     
      self.cursor = self.db.cursor()
         
 

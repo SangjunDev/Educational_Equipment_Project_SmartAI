@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Room</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.min.js"></script>
+    <script type="text/javascript" src = '/static/js/socket/socket_temp.js'></script>
+
+</head>
+<body>
+  <script>
+    $(document).ready(function(){
+
+      var socket = io.connect('http://' + document.domain + ':' + location.port + '/sockettest');
+      console.log('http://' + document.domain + ':' + location.port+ '/sockettest')
+      
+      socket.on('connect', function(){
+        var connect_string = 'connect';
+        console.log(connect_string);
+        socket.emit('request', connect_string);
+    });
+
+    socket.on('disconnect', function(){
+      var connect_string = 'disconnect';
+      console.log(connect_string);
+      socket.discnnect();
+      //socket.emit('server_temp2', connect_string);
+  });
+      
+      socket.on('response', function(msg){
+              if(msg.type === 'data'){
+                      $('#messages_1').text(msg.temp);
+                      $('#messages_2').text(msg.humi);
+  
+              }else{
+                      $('#messages').text('error');
+              }
+              console.log('Received Message : '+msg.type);
+            }
+      );
+      });
+
+  </script>
+
+
+  <ul id="messages_1"></ul>
+  <ul id="messages_2"></ul>
+
+</body>
+</html>
