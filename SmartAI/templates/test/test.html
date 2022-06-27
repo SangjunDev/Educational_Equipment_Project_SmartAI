@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Speech Recognition in Python</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}" />
-    <script src='/static/js/annyang.js'></script>
-    
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js'></script>
+
   </head>
   <body>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}" />
+
+    
+
+    
+
             
     <div class="container">
               <div>음성인식 결과 목록</div>
@@ -36,14 +44,20 @@
           const ul = document.getElementById("sttResult");
           
           function recBtnHandler() {
+
+            annyang.setLanguage('ko');
+            
             annyang.start({ autoRestart: false, continuous: false });
+
             const recognition = annyang.getSpeechRecognizer();
+
             let final_transcript = "";
+
             recognition.interimResults = true;
+
             recognition.onresult = function (event) {
               console.log(event);
-              // let interim_transcript = "";
-              // final_transcript = "";
+
               for (let i = event.resultIndex; i < event.results.length; ++i) {
                 if (event.results[i].isFinal) {
                   final_transcript += event.results[i][0].transcript;

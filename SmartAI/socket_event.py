@@ -26,15 +26,6 @@ def raedTable(query, args={}):
 
 def socketio_init(socketio):
     
-    #@socketio.on('connect', namespace='/sockettest')
-    #def connect():
-       # data = "connect"
-        #emit("response", data)
-        
-   # @socketio.on('disconnect', namespace='/sockettest')
-   # def disconnect():
-        #print("disconnected")         
-    
     @socketio.on('request', namespace='/sockettest')
     def request(message):
         to_client = dict()
@@ -47,7 +38,7 @@ def socketio_init(socketio):
                 to_client['humi'] = message[0][1]
                 to_client['time'] = str(message[0][2])
                 to_client['type'] = 'data'
-                emit('response',to_client, broadcast = True) 
+                emit('response',to_client, broadcast = False) 
                 socketio.sleep(5)
         else:
             pass          

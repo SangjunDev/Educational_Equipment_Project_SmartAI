@@ -2,17 +2,8 @@ from flask import Blueprint, render_template
 
 from SmartAI.module import dbModule
 
-import sys
-
-
 blue_index = Blueprint("index", __name__)
 
-sql = { 'illuminace' : 'SELECT * FROM ILLUMINANCE',
-        'gas': 'SELECT * FROM GAS',
-        'temp': 'SELECT * FROM TEMP',
-        'dust': 'SELECT * FROM DUST',
-        'pir': 'SELECT * FROM PIR'
-}
 
 def raedTable(query, args={}):
     db = dbModule.Database()
@@ -37,46 +28,45 @@ def actuator_control():
 '''Sensor Page Mapping'''
 @blue_index.route("/Sensor/Illuminance")                                            
 def sensor_illumunance():
-    return render_template('sensor_section/Illuminance.html', datas= raedTable(sql['illuminace']))
+    return render_template('sensor_section/Illuminance.html', datas= raedTable(dbModule.sql['illuminace']))
 
 @blue_index.route("/Sensor/Gas")
 def sensor_gas():
-    return render_template('sensor_section/Gas.html', datas= raedTable(sql['gas']))
+    return render_template('sensor_section/Gas.html', datas= raedTable(dbModule.sql['gas']))
 
 @blue_index.route("/Sensor/Temp")
 def sensor_temp():
-
-    return render_template('sensor_section/Temp.html', datas= raedTable(sql['temp']) )    
+    return render_template('sensor_section/Temp.html', datas= raedTable(dbModule.sql['temp']) )    
 
 @blue_index.route("/Sensor/Dust")
 def sensor_dust():
 
-    return render_template('sensor_section/Dust.html',  datas= raedTable(sql['dust']))
+    return render_template('sensor_section/Dust.html',  datas= raedTable(dbModule.sql['dust']))
 
 @blue_index.route("/Sensor/Pir")
 def sensor_pir():
 
-    return render_template('sensor_section/Pir.html',  datas= raedTable(sql['pir'])  )
+    return render_template('sensor_section/Pir.html',  datas= raedTable(dbModule.sql['pir'])  )
 
 '''Module Page Mapping'''
 @blue_index.route("/Module/Light")
 def module_light():
-    return render_template('module_section/Light.html',  datas= raedTable(sql['illuminace']))
+    return render_template('module_section/Light.html',  datas= raedTable(dbModule.sql['illuminace']))
 
 @blue_index.route("/Module/Gas")
 def module_gas():
-    return render_template('module_section/Gas.html',  datas= raedTable(sql['gas']))
+    return render_template('module_section/Gas.html',  datas= raedTable(dbModule.sql['gas']))
 
 @blue_index.route("/Module/Temp")
 def module_temp():
-    return render_template('module_section/Temp.html',  datas= raedTable(sql['temp']))
+    return render_template('/module_section/Temp.html',  datas= raedTable(dbModule.sql['temp']))
 
 @blue_index.route("/Module/Dust")
 def module_dust():
-    return render_template('module_section/Dust.html',  datas= raedTable(sql['dust']))
+    return render_template('module_section/Dust.html',  datas= raedTable(dbModule.sql['dust']))
 
 @blue_index.route("/Module/Pir")
 def module_pir():
-    return render_template('module_section/Pir.html',  datas= raedTable(sql['pir']))
+    return render_template('module_section/Pir.html',  datas= raedTable(dbModule.sql['pir']))
 
 

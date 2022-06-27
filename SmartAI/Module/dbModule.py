@@ -1,15 +1,24 @@
 #import pymysql
 import pymysql
 
+sql = { 'illuminace' : 'SELECT * FROM ILLUMINANCE',
+        'gas': 'SELECT * FROM GAS',
+        'temp': 'SELECT * FROM TEMP',
+        'dust': 'SELECT * FROM DUST',
+        'pir': 'SELECT * FROM PIR'
+}
+
 
 class Database():
     def __init__(self):
      self.db = pymysql.connect(host='127.0.0.1',
+                               port = 3306, 
                                   user='root',
                                   password='1234qwer',
                                   db='SmartAI',
                                   charset='utf8')
-                                  #cursorclass=pymysql.cursors.DictCursor)     
+                                  #cursorclass=pymysql.cursors.DictCursor)   
+                                    
      self.cursor = self.db.cursor()
         
 

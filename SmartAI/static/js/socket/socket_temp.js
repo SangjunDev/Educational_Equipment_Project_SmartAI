@@ -5,16 +5,18 @@ var count =1;
 
 
 $(document).ready(function(){
-    var socket = io.connect('http://' + document.domain + ':' + location.port);
-    console.log('http://' + document.domain + ':' + location.port)
+    console.log('http://' + document.domain + ':' + location.port + '/sockettest')
 
+
+    var socket = io.connect('http://' + document.domain + ':' + location.port + '/sockettest') ;
+   
     socket.on('connect', function(msg){
             var connect_string = 'connect';
             console.log(connect_string)
-            socket.emit('server_temp', connect_string);
+            socket.emit('request', connect_string);
     });
 
-    socket.on('client_1', function(msg){
+    socket.on('response', function(msg){
             if(msg.type === 'data'){
                     $('#messages_1').text(msg.temp);
                     $('#messages_2').text(msg.humi);
@@ -23,9 +25,6 @@ $(document).ready(function(){
                     time.push(msg.time);
                     getGraph(temp, humi, time);
                     
-                    return () => {
-                        socket.off('client_1')
-                    }
 
             }else{
                     $('#messages').text('error');
@@ -37,6 +36,11 @@ $(document).ready(function(){
             
     });
 
+    socket.on('disconnect', function(msg){image.png
+      var connect_string = 'disconnect';
+      console.log(connect_string)
+});image.png
+
 
 });
     
@@ -45,13 +49,6 @@ $(document).ready(function(){
 
 
 function getGraph(data1, data2, data3){
-
-    if(count>8){ 
-        data1.shift();
-        data2.shift();
-        data3.shift();
-      }
-      count++;
 
       chart= new Chart(document.getElementById("line-chart"), {
         type: 'line',
@@ -83,6 +80,14 @@ function getGraph(data1, data2, data3){
 
 
       });
+
+
+      if(count>8){ 
+        data1.shift();
+        data2.shift();
+        data3.shift();
+      }
+      count++;
                        
               };  
       
