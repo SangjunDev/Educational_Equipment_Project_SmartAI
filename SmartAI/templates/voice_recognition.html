@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Speech Recognition in Python</title>
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js'></script>
+
+  </head>
+  <body>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}" />
+
+    
+    <div class="container">
+              <div>음성인식 결과 목록</div>
+              <li id="sttResult">시작</li>
+            </div>
+
+    <main>
+      <div class="btnComp">
+        <div class="container">
+          <input type="button" value="닫 기"  onclick="window.close();"/>
+          <input type="button" value = "마이크 시작" id="recBtn"/>
+          <input type="button" value = "마이크 끄기" id="stopBtn"/>
+        </div>
+      </div>
+    </main>
+
+  </body>
+
+  <script src='../static/js/voice_control.js'></script>
+</html>

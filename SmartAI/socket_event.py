@@ -1,28 +1,8 @@
-from argparse import Namespace
 from flask import Blueprint
-from flask_socketio import emit,disconnect
-
-
-
-from SmartAI.module import dbModule
+from flask_socketio import emit
+from SmartAI.module import dbModule as db
 
 blue_socket = Blueprint("socket", __name__)
-
-sql = { 'illuminace' : 'SELECT payload,time(real_t) FROM ILLUMINANCE ORDER BY id DESC LIMIT 1',
-        'gas': 'SELECT payload,time(real_t) FROM GAS ORDER BY id DESC LIMIT 1',
-        'temp': 'SELECT payload_t,payload_h,time(real_t) FROM TEMP ORDER BY id DESC LIMIT 1',
-        'dust': 'SELECT payload,time(real_t) FROM DUST ORDER BY id DESC LIMIT 1',
-        'pir': 'SELECT payload,time(real_t) FROM PIR ORDER BY id DESC LIMIT 1'
-}
-
-
-
-def raedTable(query, args={}):
-    db = dbModule.Database()
-    row = db.executeAll(query, args={})
-    return row
-
-
 
 def socketio_init(socketio):
     
@@ -32,7 +12,7 @@ def socketio_init(socketio):
         
         if message == 'connect':
             while(1): 
-                message = raedTable(sql['temp'])
+                message = db.raedData(db.socketSql['temp'])
                 print(message)
                 to_client['temp'] = message[0][0]
                 to_client['humi'] = message[0][1]

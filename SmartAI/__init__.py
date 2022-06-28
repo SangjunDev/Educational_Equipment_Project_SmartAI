@@ -12,13 +12,13 @@ def create_app(debug = False):
     
     socketio.init_app(app)
     
-    from.import acuator_control
+    #from.import acuator_control
     from . import API_db
     from . import routes
     from . import test
     from . import socket_event
     
-    app.register_blueprint(acuator_control.blue_control)
+    #app.register_blueprint(acuator_control.blue_control)
     app.register_blueprint(API_db.blue_api)
     app.register_blueprint(routes.blue_index)
     app.register_blueprint(test.blue_test)

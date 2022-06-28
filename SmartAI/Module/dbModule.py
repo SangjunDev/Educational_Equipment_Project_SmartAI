@@ -1,11 +1,24 @@
-#import pymysql
 import pymysql
 
-sql = { 'illuminace' : 'SELECT * FROM ILLUMINANCE',
+allSelect = { 'illuminace' : 'SELECT * FROM ILLUMINANCE',
         'gas': 'SELECT * FROM GAS',
         'temp': 'SELECT * FROM TEMP',
         'dust': 'SELECT * FROM DUST',
         'pir': 'SELECT * FROM PIR'
+}
+
+apiSql = { 'illuminace' : 'SELECT id,topic,payload,time(real_t) FROM ILLUMINANCE ORDER BY id DESC LIMIT 1',
+        'gas': 'SELECT id,topic,payload,time(real_t) FROM GAS ORDER BY id DESC LIMIT 1',
+        'temp': 'SELECT id,topic,payload_t,payload_h,time(real_t) FROM TEMP ORDER BY id DESC LIMIT 1',
+        'dust': 'SELECT id,topic,payload,time(real_t) FROM DUST ORDER BY id DESC LIMIT 1',
+        'pir': 'SELECT id,topic,payload,time(real_t) FROM PIR ORDER BY id DESC LIMIT 1'
+}
+
+socketSql = { 'illuminace' : 'SELECT payload,time(real_t) FROM ILLUMINANCE ORDER BY id DESC LIMIT 1',
+        'gas': 'SELECT payload,time(real_t) FROM GAS ORDER BY id DESC LIMIT 1',
+        'temp': 'SELECT payload_t,payload_h,time(real_t) FROM TEMP ORDER BY id DESC LIMIT 1',
+        'dust': 'SELECT payload,time(real_t) FROM DUST ORDER BY id DESC LIMIT 1',
+        'pir': 'SELECT payload,time(real_t) FROM PIR ORDER BY id DESC LIMIT 1'
 }
 
 
@@ -38,3 +51,8 @@ class Database():
     def commit(self):
         self.db.commit()
         
+def raedData(query, args={}):
+    db = Database()
+    row = db.executeAll(query, args={})
+    return row
+    
