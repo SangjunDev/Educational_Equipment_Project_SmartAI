@@ -3,11 +3,11 @@
 **Flask 설치**
 * pip install flask
 
+**mysql 설치**
+* pip install flask-socketio
+
 **Paho-MQTT 설치**
 * pip install paho-mqtt
-
-**pustil 설치**
-* pip install psutil
 
 **mysql 설치**
 * pip install pymysql 
