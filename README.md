@@ -26,3 +26,4 @@
 
 ![화면 캡처 2022-07-22 153128](https://user-images.githubusercontent.com/86037701/180379608-aa608d16-317d-4202-b1bf-82ef7d3b01bf.png)
 
+![화면 캡처 2022-07-22 154705](https://user-images.githubusercontent.com/86037701/180380167-2310bb7e-fe25-4bc9-b675-a4dbb384f358.png)
